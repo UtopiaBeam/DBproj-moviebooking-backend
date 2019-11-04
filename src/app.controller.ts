@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Params } from 'express-serve-static-core';
 
 @Controller()
 export class AppController {
