@@ -4,10 +4,12 @@ import {
     Column,
     ManyToOne,
     ManyToMany,
+    OneToMany,
 } from 'typeorm';
 import { Company } from '../company/company.entity';
 import { Genre } from '../genre/genre.entity';
 import { ShowTime } from '../show-time/show-time.entity';
+import { Review } from '../review/review.entity';
 
 @Entity()
 export class Movie {
@@ -35,6 +37,9 @@ export class Movie {
     @ManyToMany(_ => Genre, genre => genre.movies)
     genres: Genre[];
 
-    @ManyToMany(_ => ShowTime, showtime => showtime.movies)
-    showtimes: ShowTime[];
+    @ManyToMany(_ => ShowTime, showTime => showTime.movies)
+    showTimes: ShowTime[];
+
+    @OneToMany(_ => Review, review => review.movie)
+    reviews: Review[];
 }

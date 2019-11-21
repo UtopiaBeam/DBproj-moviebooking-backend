@@ -19,6 +19,8 @@ import { CardModule } from './card/card.module';
 import { SouvenirModule } from './souvenir/souvenir.module';
 import { ShowTimeModule } from './show-time/show-time.module';
 import { TicketModule } from './ticket/ticket.module';
+import { ReviewModule } from './review/review.module';
+import { PointTransactionModule } from './point-transaction/point-transaction.module';
 
 @Module({
     imports: [
@@ -48,6 +50,8 @@ import { TicketModule } from './ticket/ticket.module';
         SouvenirModule,
         ShowTimeModule,
         TicketModule,
+        ReviewModule,
+        PointTransactionModule,
     ],
     controllers: [AppController, UserController, MovieController],
     providers: [AppService, UserService, MovieService],

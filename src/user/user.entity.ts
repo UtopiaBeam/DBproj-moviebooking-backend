@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Card } from '../card/card.entity';
 import { Ticket } from '../ticket/ticket.entity';
+import { Review } from '../review/review.entity';
 
 export enum Gender {
     Male = 'male',
@@ -44,4 +45,7 @@ export class User {
 
     @OneToMany(_ => Ticket, ticket => ticket.user)
     tickets: Ticket[];
+
+    @OneToMany(_ => Review, review => review.user)
+    reviews: Review[];
 }

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { PointTransaction } from '../point-transaction/point-transaction.entity';
 
 @Entity()
 export class Souvenir {
@@ -13,4 +14,7 @@ export class Souvenir {
 
     @Column()
     amount: number;
+
+    @OneToMany(_ => PointTransaction, transaction => transaction.souvenir)
+    transactions: PointTransaction[];
 }
