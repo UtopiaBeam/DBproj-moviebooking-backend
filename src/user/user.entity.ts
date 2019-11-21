@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Card } from '../card/card.entity';
+import { Ticket } from '../ticket/ticket.entity';
 
 export enum Gender {
     Male = 'male',
@@ -36,4 +38,10 @@ export class User {
 
     @Column({ nullable: true })
     tel: string;
+
+    @OneToMany(_ => Card, card => card.user)
+    cards: Card[];
+
+    @OneToMany(_ => Ticket, ticket => ticket.user)
+    tickets: Ticket[];
 }
