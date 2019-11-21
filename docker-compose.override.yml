@@ -9,6 +9,11 @@ services:
     command: sh -c 'cd /server && yarn && yarn start:dev'
     ports:
       - 3000:3000
+    environment:
+      MYSQL_URL: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
 
   mysql:
     container_name: dbproj-mysql
@@ -19,7 +24,6 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
     environment:
-      MYSQL_URL: localhost
       MYSQL_DATABASE: db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
