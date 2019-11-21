@@ -19,6 +19,7 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
     environment:
+      MYSQL_URL: localhost
       MYSQL_DATABASE: db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
