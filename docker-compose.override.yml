@@ -10,18 +10,5 @@ services:
     ports:
       - 3001:3000
     environment:
-      MYSQL_URL: mysql://user:password@mysql:3306/db
+      MYSQL_URL:
 
-  mysql:
-    container_name: dbproj-mysql
-    image: mysql:5.7
-    restart: always
-    ports:
-      - 3306:3306
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
