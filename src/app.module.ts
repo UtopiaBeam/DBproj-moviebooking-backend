@@ -29,11 +29,7 @@ import { PointTransactionModule } from './point-transaction/point-transaction.mo
             inject: [ConfigService],
             useFactory: (config: ConfigService) => ({
                 type: 'mysql',
-                host: config.mySqlUrl,
-                port: 3306,
-                username: config.mySqlUser,
-                password: config.mySqlPassword,
-                database: config.mySqlDatabase,
+                url: config.mySqlUrl,
                 entities: [__dirname + '/**/*.entity.{js,ts}'],
                 synchronize: true,
             }),
