@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, Res, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
 
@@ -9,5 +9,21 @@ export class UserController {
     @Get()
     findAll(): Promise<User[]> {
         return this.userService.findAll();
+    }
+
+    @Get(':id')
+    findOnebyid( @Param() params): Promise<User> {
+        return this.userService.findOnebyid(params.id);
+    }
+
+    @Post('create')
+    createUser(@Req() req, @Res() res) {
+        return this.userService.createUser(req,res);
+    }
+
+
+    @Delete('delete/:id')
+    deleteUser(@Param() params) : string {
+        return this.userService.deleteUser(params.id);
     }
 }
