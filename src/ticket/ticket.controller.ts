@@ -24,6 +24,6 @@ export class TicketController {
 
     @Delete('delete/:id')
     deleteTicket(@Param() params) : string {
-        return this.ticketService.deleteTicket(params.id);
+        return this.ticketService.deleteTicket(params.showTime_id,params.seat_id,params.user_id);
     }
 }
