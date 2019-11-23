@@ -20,12 +20,12 @@ export class UserService {
     }
 
     createUser(req,res) {
-        res = this.manager.query(`INSERT INTO user (username,password,email,firstName,lastName,Address,SSN,gender,tel) VALUES (${res.username},${res.password},${res.email},${res.firstName},${res.lastName},${res.Address},${res.SSN},${res.gender},${res.tel})`);
+        res = this.manager.query(`INSERT INTO user (username,password,email,firstName,lastName,Address,SSN,gender,tel) VALUES (${req.username},${req.password},${req.email},${req.firstName},${req.lastName},${req.Address},${req.SSN},${req.gender},${req.tel})`);
         return res.json();
     }
 
     updateUser(req,res) {
-        res = this.manager.query(`UPDATE user SET username = ${res.username}, password = ${res.password}, email = ${res.email}, firstName = ${res.firstName}, lastName = ${res.lastName}, Address = ${res.Address}, SSN = ${res.SSN}, gender = ${res.gender}, tel = ${res.tel}`);
+        res = this.manager.query(`UPDATE user SET username = ${req.username}, password = ${req.password}, email = ${req.email}, firstName = ${req.firstName}, lastName = ${req.lastName}, Address = ${req.Address}, SSN = ${req.SSN}, gender = ${req.gender}, tel = ${req.tel}`);
         return res.json();
     }
 

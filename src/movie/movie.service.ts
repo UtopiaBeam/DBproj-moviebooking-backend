@@ -19,12 +19,12 @@ export class MovieService {
     }
 
     createMovie(req,res) {
-        res = this.manager.query(`INSERT INTO movie (name,synopsis,director,actor,duration) VALUES (${res.name},${res.synopsis},${res.director},${res.actor},${res.duration})`);
+        res = this.manager.query(`INSERT INTO movie (name,synopsis,director,actor,duration) VALUES (${req.name},${req.synopsis},${req.director},${req.actor},${req.duration})`);
         return res.json();
     }
 
     updateUser(req,res) {
-        res = this.manager.query(`UPDATE movie SET name = ${res.name}, synopsis = ${res.synopsis}, director = ${res.director}, actor = ${res.actor}, duration = ${res.duration}`);
+        res = this.manager.query(`UPDATE movie SET name = ${req.name}, synopsis = ${req.synopsis}, director = ${req.director}, actor = ${req.actor}, duration = ${req.duration}`);
         return res.json();
     }
 
