@@ -15,7 +15,7 @@ export class MovieService {
 
     findOnebyid(id) : Promise<Movie> {
         console.log('one user');
-        return this.manager.query(`SELECT * FROM movie WHERE movie_id = ${id}`);
+        return this.manager.query(`SELECT * FROM movie WHERE id = ${id}`);
     }
 
     createMovie(req,res) {
@@ -24,12 +24,12 @@ export class MovieService {
     }
 
     updateUser(req,res) {
-        res = this.manager.query(`UPDATE movie SET name = ${req.name}, synopsis = ${req.synopsis}, director = ${req.director}, actor = ${req.actor}, duration = ${req.duration}`);
+        res = this.manager.query(`UPDATE movie SET name = ${req.name}, synopsis = ${req.synopsis}, director = ${req.director}, actor = ${req.actor}, duration = ${req.duration} WHERE id = ${req.id}`);
         return res.json();
     }
 
     deleteMovie(id): string {
-        var res = this.manager.query(`DELETE FROM user WHERE movie_id=${id}`);
+        var res = this.manager.query(`DELETE FROM user WHERE id = ${id}`);
         return `Movie:${id} deleted`;
     }
 }

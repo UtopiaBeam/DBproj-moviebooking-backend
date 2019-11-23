@@ -25,7 +25,7 @@ export class TheatreService {
     }
 
     updateTheatre(req,res) {
-        res = this.manager.query(`UPDATE theatre SET theatreNo = ${req.theatreNo}, seats = ${req.seats}, cinema = ${req.cinema}, showTimes = ${req.showTimes}`);
+        res = this.manager.query(`UPDATE theatre SET theatreNo = ${req.theatreNo}, seats = ${req.seats}, cinema = ${req.cinema}, showTimes = ${req.showTimes} WHERE id = ${req.id}`);
         return res.json();
     }
 

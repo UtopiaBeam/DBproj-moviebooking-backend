@@ -16,7 +16,7 @@ export class UserService {
 
     findOnebyid(id) : Promise<User> {
         console.log('one user');
-        return this.manager.query(`SELECT * FROM user WHERE user_id = ${id}`);
+        return this.manager.query(`SELECT * FROM user WHERE id = ${id}`);
     }
 
     createUser(req,res) {
@@ -25,12 +25,12 @@ export class UserService {
     }
 
     updateUser(req,res) {
-        res = this.manager.query(`UPDATE user SET username = ${req.username}, password = ${req.password}, email = ${req.email}, firstName = ${req.firstName}, lastName = ${req.lastName}, Address = ${req.Address}, SSN = ${req.SSN}, gender = ${req.gender}, tel = ${req.tel}`);
+        res = this.manager.query(`UPDATE user SET username = ${req.username}, password = ${req.password}, email = ${req.email}, firstName = ${req.firstName}, lastName = ${req.lastName}, Address = ${req.Address}, SSN = ${req.SSN}, gender = ${req.gender}, tel = ${req.tel} WHERE id = ${req.id}`);
         return res.json();
     }
 
     deleteUser(id): string {
-        var res = this.manager.query(`DELETE FROM user WHERE user_id=${id}`);
+        var res = this.manager.query(`DELETE FROM user WHERE id=${id}`);
         return `User:${id} deleted`;
     }
 }
