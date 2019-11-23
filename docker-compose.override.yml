@@ -8,7 +8,7 @@ services:
       - .:/server
     command: sh -c 'cd /server && yarn && yarn start:dev'
     ports:
-      - 3001:3000
+      - 3000:3000
     environment:
       MYSQL_URL:
 
