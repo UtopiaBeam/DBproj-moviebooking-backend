@@ -14,7 +14,7 @@ export class TheatreService {
         return this.manager.query(`SELECT * FROM theatre`);
     }
 
-    findOnebyid(id) : Promise<User> {
+    findOnebyid(id) : Promise<Theatre> {
         console.log('one theatre');
         return this.manager.query(`SELECT * FROM theatre WHERE id = ${id}`);
     }
