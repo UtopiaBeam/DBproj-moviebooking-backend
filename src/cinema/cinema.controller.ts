@@ -1,6 +1,13 @@
-import { Controller, Get, Req, Res, Param,Post, Delete, Put } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Param,
+    Post,
+    Body,
+} from '@nestjs/common';
 import { CinemaService } from './cinema.service';
 import { Cinema } from './cinema.entity';
+import { CinemaDto } from './cinema.dto';
 
 @Controller('cinema')
 export class CinemaController {
@@ -12,22 +19,12 @@ export class CinemaController {
     }
 
     @Get(':id')
-    findOnebyid( @Param() params): Promise<Cinema> {
-        return this.cinemaService.findOnebyid(params.id);
+    fintById(@Param() params): Promise<Cinema> {
+        return this.cinemaService.findById(params.id);
     }
 
-    @Post('create')
-    createCinema(@Req() req, @Res() res) {
-        return this.cinemaService.createCinema(req,res);
-    }
-
-    @Put('update')
-    updateCinema(@Req() req, @Res() res) {
-        return this.cinemaService.updateCinema(req,res);
-    }
-
-    @Delete('delete/:id')
-    deleteCinema(@Param() params) : string {
-        return this.cinemaService.deleteCinema(params.id);
+    @Post()
+    create(@Body() cinemaDto: CinemaDto) {
+        return this.cinemaService.create(cinemaDto);
     }
 }
