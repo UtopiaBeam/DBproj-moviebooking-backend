@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Req, Res, Delete} from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, Res, Delete,Put} from '@nestjs/common';
 import { TicketService } from './ticket.service';
 import { Ticket } from './ticket.entity';
 
@@ -21,6 +21,10 @@ export class TicketController {
         return this.ticketService.createTicket(req,res);
     }
 
+    @Put('update')
+    updateTicket(@Req() req, @Res() res) {
+        return this.ticketService.updateTicket(req,res);
+    }
 
     @Delete('delete/:id')
     deleteTicket(@Param() params) : string {

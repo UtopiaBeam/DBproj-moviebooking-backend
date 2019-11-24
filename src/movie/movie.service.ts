@@ -23,7 +23,7 @@ export class MovieService {
         return res.json();
     }
 
-    updateUser(req,res) {
+    updateMovie(req,res) {
         res = this.manager.query(`UPDATE movie SET name = ${req.name}, synopsis = ${req.synopsis}, director = ${req.director}, actor = ${req.actor}, duration = ${req.duration} WHERE id = ${req.id}`);
         return res.json();
     }

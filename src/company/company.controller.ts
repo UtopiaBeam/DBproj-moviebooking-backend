@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res, Param,Post, Delete } from '@nestjs/common';
+import { Controller, Get, Req, Res, Param,Post, Delete, Put } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { Company } from './company.entity';
 
@@ -19,6 +19,11 @@ export class CompanyController {
     @Post('create')
     createCompany(@Req() req, @Res() res) {
         return this.companyService.createCompany(req,res);
+    }
+
+    @Put('update')
+    updateCompany(@Req() req, @Res() res) {
+        return this.companyService.updateCompany(req,res);
     }
 
     @Delete('delete/:name')

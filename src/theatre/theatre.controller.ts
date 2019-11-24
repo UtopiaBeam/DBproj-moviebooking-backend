@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Req, Res, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, Res, Delete,Put } from '@nestjs/common';
 import { TheatreService } from './theatre.service';
 import { Theatre } from './theatre.entity';
 @Controller('theatre')
@@ -18,6 +18,11 @@ export class TheatreController {
     @Post('create')
     createUser(@Req() req, @Res() res) {
         return this.theatreService.createTheatre(req,res);
+    }
+
+    @Put('update')
+    updateTheatre(@Req() req, @Res() res) {
+        return this.theatreService.updateTheatre(req,res);
     }
 
 

@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res, Param,Post, Delete } from '@nestjs/common';
+import { Controller, Get, Req, Res, Param,Post, Delete, Put } from '@nestjs/common';
 import { CinemaService } from './cinema.service';
 import { Cinema } from './cinema.entity';
 
@@ -17,13 +17,17 @@ export class CinemaController {
     }
 
     @Post('create')
-    createcinema(@Req() req, @Res() res) {
+    createCinema(@Req() req, @Res() res) {
         return this.cinemaService.createCinema(req,res);
     }
 
+    @Put('update')
+    updateCinema(@Req() req, @Res() res) {
+        return this.cinemaService.updateCinema(req,res);
+    }
 
     @Delete('delete/:id')
-    deletecinema(@Param() params) : string {
+    deleteCinema(@Param() params) : string {
         return this.cinemaService.deleteCinema(params.id);
     }
 }
