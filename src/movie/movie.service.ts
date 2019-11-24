@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectEntityManager } from '@nestjs/typeorm';
 import { EntityManager } from 'typeorm';
 import { Movie } from './movie.entity';
+import { MovieDto } from './movie.dto';
 
 @Injectable()
 export class MovieService {
@@ -13,23 +14,20 @@ export class MovieService {
         return this.manager.query(`SELECT * FROM movie`);
     }
 
-    findOnebyid(id) : Promise<Movie> {
-        console.log('one user');
-        return this.manager.query(`SELECT * FROM movie WHERE id = ${id}`);
+    findById(id: number): Promise<Movie> {
+        return this.manager.query(`SELECT * FROM movie WHERE id = ?`, [id]);
     }
 
-    createMovie(req,res) {
-        res = this.manager.query(`INSERT INTO movie (name,synopsis,director,actor,duration) VALUES (${req.name},${req.synopsis},${req.director},${req.actor},${req.duration})`);
-        return res.json();
-    }
-
-    updateMovie(req,res) {
-        res = this.manager.query(`UPDATE movie SET name = ${req.name}, synopsis = ${req.synopsis}, director = ${req.director}, actor = ${req.actor}, duration = ${req.duration} WHERE id = ${req.id}`);
-        return res.json();
-    }
-
-    deleteMovie(id): string {
-        var res = this.manager.query(`DELETE FROM user WHERE id = ${id}`);
-        return `Movie:${id} deleted`;
+    create(movieDto: MovieDto) {
+        return this.manager.query(
+            `INSERT INTO movie (name,synopsis,duration,companyId,genreId) VALUES (?,?,?,?,?)`,
+            [
+                movieDto.name,
+                movieDto.synopsis,
+                movieDto.duration,
+                movieDto.companyId,
+                movieDto.genreId,
+            ],
+        );
     }
 }
