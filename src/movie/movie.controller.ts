@@ -16,6 +16,11 @@ export class MovieController {
         return this.movieService.findOnebyid(params.id);
     }
 
+    @Get('name/:name')
+    findOnebyname( @Param() params): Promise<Movie> {
+        return this.movieService.findOnebyname(params.name);
+    }
+
     @Post('create')
     createMovie(@Req() req, @Res() res) {
         return this.movieService.createMovie(req,res);
