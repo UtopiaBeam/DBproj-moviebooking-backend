@@ -5,6 +5,7 @@ import {
     IsPositive,
     IsOptional,
 } from 'class-validator';
+import { ToInt, ToFloat } from 'class-sanitizer';
 
 export class MovieDto {
     @IsString()
@@ -17,9 +18,11 @@ export class MovieDto {
 
     @IsPositive()
     @IsNumber()
+    @ToFloat()
     duration: number;
 
     @IsNumber()
+    @ToInt()
     companyId: number;
 
     @IsOptional()
