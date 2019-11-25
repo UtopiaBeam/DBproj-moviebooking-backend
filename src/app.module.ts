@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserController } from './user/user.controller';
@@ -21,6 +21,7 @@ import { ShowTimeModule } from './show-time/show-time.module';
 import { TicketModule } from './ticket/ticket.module';
 import { ReviewModule } from './review/review.module';
 import { PointTransactionModule } from './point-transaction/point-transaction.module';
+import { SanitizationMiddleware } from './middlewares/sanitization.middleware';
 
 @Module({
     imports: [
@@ -52,4 +53,8 @@ import { PointTransactionModule } from './point-transaction/point-transaction.mo
     controllers: [AppController, UserController, MovieController],
     providers: [AppService, UserService, MovieService],
 })
-export class AppModule {}
+export class AppModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply(SanitizationMiddleware).forRoutes('*');
+    }
+}
