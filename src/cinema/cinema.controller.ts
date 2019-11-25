@@ -1,10 +1,4 @@
-import {
-    Controller,
-    Get,
-    Param,
-    Post,
-    Body,
-} from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { CinemaService } from './cinema.service';
 import { Cinema } from './cinema.entity';
 import { CinemaDto } from './cinema.dto';

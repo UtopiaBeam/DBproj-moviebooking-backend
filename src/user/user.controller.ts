@@ -30,11 +30,6 @@ export class UserController {
         return this.userService.create(userDto);
     }
 
-    @Put(':id')
-    update(@Param('id') id: number, @Body() userDto: Partial<UserDto>) {
-        return this.userService.update(id, userDto);
-    }
-
     @Delete(':id')
     delete(@Param('id') id: number) {
         return this.userService.delete(id);
