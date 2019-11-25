@@ -13,16 +13,4 @@ export class ConfigService {
     get mySqlUrl(): string {
         return this.get('MYSQL_URL');
     }
-
-    get mySqlDatabase(): string {
-        return this.get('MYSQL_DATABASE');
-    }
-
-    get mySqlUser(): string {
-        return this.get('MYSQL_USER');
-    }
-
-    get mySqlPassword(): string {
-        return this.get('MYSQL_PASSWORD');
-    }
 }

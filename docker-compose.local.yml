@@ -1,0 +1,27 @@
+version: "3.2"
+
+services:
+  backend:
+    container_name: dbproj-backend
+    image: node:10-alpine
+    volumes:
+      - .:/server
+    command: sh -c 'cd /server && yarn && yarn start:dev'
+    ports:
+      - 3000:3000
+    environment:
+      MYSQL_URL: mysql://user:password@mysql:3306/db
+
+  mysql:
+    container_name: dbproj-mysql
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password

@@ -1,6 +1,17 @@
-import { Controller, Get, Req, Res, Param,Post, Delete, Put } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Req,
+    Res,
+    Param,
+    Post,
+    Delete,
+    Put,
+    Body,
+} from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { Company } from './company.entity';
+import { CompanyDto } from './company.dto';
 
 @Controller('company')
 export class CompanyController {
@@ -12,22 +23,12 @@ export class CompanyController {
     }
 
     @Get(':name')
-    findOnebyid( @Param() params): Promise<Company> {
-        return this.companyService.findOnebyid(params.name);
+    findById(@Param('name') name: string): Promise<Company> {
+        return this.companyService.findById(name);
     }
 
-    @Post('create')
-    createCompany(@Req() req, @Res() res) {
-        return this.companyService.createCompany(req,res);
-    }
-
-    @Put('update')
-    updateCompany(@Req() req, @Res() res) {
-        return this.companyService.updateCompany(req,res);
-    }
-
-    @Delete('delete/:name')
-    deleteCompany(@Param() params) : string {
-        return this.companyService.deleteCompany(params.name);
+    @Post()
+    create(@Body() companyDto: CompanyDto) {
+        return this.companyService.create(companyDto);
     }
 }

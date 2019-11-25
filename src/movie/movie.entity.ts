@@ -25,12 +25,6 @@ export class Movie {
     @Column({ type: 'float' })
     duration: number;
 
-    @Column('simple-array')
-    directors: string[];
-
-    @Column('simple-array')
-    actors: string[];
-
     @ManyToOne(_ => Company, company => company.movies)
     company: Company;
 

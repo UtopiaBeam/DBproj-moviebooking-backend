@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectEntityManager } from '@nestjs/typeorm';
 import { EntityManager } from 'typeorm';
 import { User } from './user.entity';
+import { UserDto } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -10,27 +11,31 @@ export class UserService {
     ) {}
 
     findAll(): Promise<User[]> {
-        console.log('all users');
         return this.manager.query(`SELECT * FROM user`);
     }
 
-    findOnebyid(id) : Promise<User> {
-        console.log('one user');
-        return this.manager.query(`SELECT * FROM user WHERE id = ${id}`);
+    findById(id: number): Promise<User> {
+        return this.manager.query(`SELECT * FROM user WHERE id = ?`, [id]);
     }
 
-    createUser(req,res) {
-        res = this.manager.query(`INSERT INTO user (username,password,email,firstName,lastName,Address,SSN,gender,tel) VALUES (${req.username},${req.password},${req.email},${req.firstName},${req.lastName},${req.Address},${req.SSN},${req.gender},${req.tel})`);
-        return res.json();
+    create(userDto: UserDto) {
+        return this.manager.query(
+            `INSERT INTO user (username,password,email,firstName,lastName,address,ssn,gender,tel) VALUES (?,?,?,?,?,?,?,?,?)`,
+            [
+                userDto.username,
+                userDto.password,
+                userDto.email,
+                userDto.firstName,
+                userDto.lastName,
+                userDto.address,
+                userDto.ssn,
+                userDto.gender,
+                userDto.tel,
+            ],
+        );
     }
 
-    updateUser(req,res) {
-        res = this.manager.query(`UPDATE user SET username = ${req.username}, password = ${req.password}, email = ${req.email}, firstName = ${req.firstName}, lastName = ${req.lastName}, Address = ${req.Address}, SSN = ${req.SSN}, gender = ${req.gender}, tel = ${req.tel} WHERE id = ${req.id}`);
-        return res.json();
-    }
-
-    deleteUser(id): string {
-        var res = this.manager.query(`DELETE FROM user WHERE id=${id}`);
-        return `User:${id} deleted`;
+    delete(id: number) {
+        return this.manager.query(`DELETE FROM user WHERE id=?`, [id]);
     }
 }

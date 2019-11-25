@@ -38,7 +38,7 @@ export class User {
     address: string;
 
     @Column({ nullable: true })
-    tel: string;
+    tel?: string;
 
     @OneToMany(_ => Card, card => card.user)
     cards: Card[];

@@ -1,6 +1,7 @@
-import { Controller, Get, Param, Post, Req, Res, Delete,Put} from '@nestjs/common';
+import { Controller, Get, Param, Post, Put, Body } from '@nestjs/common';
 import { TicketService } from './ticket.service';
-import { Ticket } from './ticket.entity';
+import { Ticket, Status } from './ticket.entity';
+import { TicketDto } from './ticket.dto';
 
 @Controller('ticket')
 export class TicketController {
@@ -12,22 +13,17 @@ export class TicketController {
     }
 
     @Get(':id')
-    findOnebyid( @Param() params): Promise<Ticket> {
-        return this.ticketService.findOnebyid(params.showTime_id,params.seat_id,params.user_id);
+    findById(@Param('ref') ref: string): Promise<Ticket> {
+        return this.ticketService.findById(ref);
     }
 
-    @Post('create')
-    createTicket(@Req() req, @Res() res) {
-        return this.ticketService.createTicket(req,res);
+    @Post()
+    create(@Body() ticketDto: TicketDto) {
+        return this.ticketService.create(ticketDto);
     }
 
-    @Put('update')
-    updateTicket(@Req() req, @Res() res) {
-        return this.ticketService.updateTicket(req,res);
-    }
-
-    @Delete('delete/:id')
-    deleteTicket(@Param() params) : string {
-        return this.ticketService.deleteTicket(params.showTime_id,params.seat_id,params.user_id);
+    @Put(':ref')
+    update(@Param('ref') ref: string, @Body('status') status: Status) {
+        return this.ticketService.changeStatus(ref, status);
     }
 }
