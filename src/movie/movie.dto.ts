@@ -21,11 +21,7 @@ export class MovieDto {
     @ToFloat()
     duration: number;
 
-    @IsNumber()
-    @ToInt()
-    companyId: number;
-
-    @IsOptional()
-    @IsNumber()
-    genreId: number;
+    @IsString()
+    @IsNotEmpty()
+    companyName: string;
 }

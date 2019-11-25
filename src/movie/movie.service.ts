@@ -20,13 +20,12 @@ export class MovieService {
 
     create(movieDto: MovieDto) {
         return this.manager.query(
-            `INSERT INTO movie (name,synopsis,duration,companyId,genreId) VALUES (?,?,?,?,?)`,
+            `INSERT INTO movie (name,synopsis,duration,companyName) VALUES (?,?,?,?)`,
             [
                 movieDto.name,
                 movieDto.synopsis,
                 movieDto.duration,
-                movieDto.companyId,
-                movieDto.genreId,
+                movieDto.companyName,
             ],
         );
     }
