@@ -15,23 +15,55 @@ export class ReviewService {
     }
 
     findById(id: number): Promise<Review> {
-        return this.manager.query(`SELECT * FROM review WHERE id = ?`, [id]);
+        return this.manager.query(
+            `SELECT * FROM review INNER JOIN movie ON movie.id=review.movieId WHERE id = ?`,
+            [id],
+        );
     }
 
-    findByUserAndMovie(user: number,movie: string): Promise<Review> {
-        return this.manager.query(`SELECT * FROM review INNER JOIN movie ON movie.id=review.movieId WHERE userId = ? AND name = ?`,[user,movie]);
+    findByUserAndMovie(user: number, movie: string): Promise<Review> {
+        return this.manager.query(
+            `SELECT * FROM review INNER JOIN movie ON movie.id=review.movieId WHERE userId = ? AND name = ?`,
+            [user, movie],
+        );
+    }
+
+    findByUser(user: number) {
+        return this.manager.query(
+            `SELECT * FROM review INNER JOIN movie ON movie.id=review.movieId WHERE userId = ?`,
+            [user],
+        );
+    }
+
+    findByMovieName(movie: string) {
+        return this.manager.query(
+            `SELECT * FROM review INNER JOIN movie ON movie.id=review.movieId WHERE name = ?`,
+            [movie],
+        );
     }
 
     create(reviewDto: ReviewDto) {
         return this.manager.query(
-            `INSERT INTO review (id,rating,comment,user,movie) VALUES (?,?,?,?,?)`,
+            `INSERT INTO review (rating,comment,userId,movieId) VALUES (?,?,?,?)`,
             [
-                reviewDto.id,
                 reviewDto.rating,
                 reviewDto.comment,
-                reviewDto.user,
-                reviewDto.movie,
+                reviewDto.userId,
+                reviewDto.movieId,
             ],
         );
+    }
+
+    update(id: number, reviewDto: Partial<ReviewDto>) {
+        return this.manager.query(
+            `UPDATE review
+            SET rating = ?, comment = ?
+            WHERE id = ?`,
+            [reviewDto.rating, reviewDto.comment, id],
+        );
+    }
+
+    delete(id: number) {
+        return this.manager.query(`DELETE FROM review WHERE id = ?`, [id]);
     }
 }
