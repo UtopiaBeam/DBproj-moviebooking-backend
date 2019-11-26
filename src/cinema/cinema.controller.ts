@@ -13,7 +13,7 @@ export class CinemaController {
     }
 
     @Get(':id')
-    fintById(@Param() params): Promise<Cinema> {
+    findById(@Param() params): Promise<Cinema> {
         return this.cinemaService.findById(params.id);
     }
 
