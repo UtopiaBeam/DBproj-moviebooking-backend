@@ -9,10 +9,6 @@ import { ToInt, ToFloat } from 'class-sanitizer';
 
 export class ReviewDto {
     @IsNumber()
-    @IsNotEmpty()
-    id: number;
-
-    @IsNumber()
     @ToInt()
     rating: number;
 
@@ -21,9 +17,9 @@ export class ReviewDto {
 
     @IsNumber()
     @ToInt()
-    user: number;
+    userId: number;
 
     @IsNumber()
     @ToInt()
-    movie: number;
+    movieId: number;
 }
