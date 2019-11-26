@@ -13,17 +13,17 @@ export class ReviewDto {
     id: number;
 
     @IsNumber()
-    @IsNotEmpty()
+    @ToInt()
     rating: number;
 
     @IsString()
     comment: string;
 
     @IsNumber()
-    @IsNotEmpty()
+    @ToInt()
     user: number;
 
     @IsNumber()
-    @IsNotEmpty()
+    @ToInt()
     movie: number;
 }
