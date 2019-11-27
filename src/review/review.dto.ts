@@ -9,21 +9,17 @@ import { ToInt, ToFloat } from 'class-sanitizer';
 
 export class ReviewDto {
     @IsNumber()
-    @IsNotEmpty()
-    id: number;
-
-    @IsNumber()
-    @IsNotEmpty()
+    @ToInt()
     rating: number;
 
     @IsString()
     comment: string;
 
     @IsNumber()
-    @IsNotEmpty()
-    user: number;
+    @ToInt()
+    userId: number;
 
     @IsNumber()
-    @IsNotEmpty()
-    movie: number;
+    @ToInt()
+    movieId: number;
 }
